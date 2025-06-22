@@ -11,4 +11,11 @@
 
     <artifactId>chatter-pojo</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.indiegeeker</groupId>
+            <artifactId>chatter-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>
