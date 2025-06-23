@@ -5,12 +5,18 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.indiegeeker</groupId>
-        <artifactId>chatter-api</artifactId>
+        <artifactId>chatter</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../chatter-api/pom.xml</relativePath>
     </parent>
 
     <artifactId>auth-service</artifactId>
 
 
+    <dependencies>
+        <dependency>
+            <groupId>com.indiegeeker</groupId>
+            <artifactId>chatter-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>

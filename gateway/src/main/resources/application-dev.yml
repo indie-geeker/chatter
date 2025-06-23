@@ -1,0 +1,30 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    gateway:
+      enabled: true
+      discovery:
+        locator:
+          enabled: true   # 动态路由，从注册中心根据微服务名称获取目标节点地址
+      routes:             # 配置路由匹配规则
+        - id: authRoute
+          uri: lb://auth-service    # lb 负载均衡，动态寻址;需要添加 loadbalancer 依赖
+          predicates:
+            - Path=/auth/**         # 可配置多个路径: Path=/a/**,/b/**
+        - id: fileRoute
+          uri: lb://file-service
+          predicates:
+            - Path=/file/**
+        - id: mainRoute
+          uri: lb://main-service
+          predicates:
+            - Path=/main/**
+
+
+server:
+  port: 18000
+  tomcat:
+    uri-encoding: UTF-8
+    max-swallow-size: 2MB
