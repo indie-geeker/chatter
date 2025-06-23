@@ -1,0 +1,17 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        import-check:
+          enabled: false
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+server:
+  port: 18100
+  tomcat:
+    uri-encoding: utf-8
+    max-swallow-size: 2MB
+logging:
+  level:
+    root: info

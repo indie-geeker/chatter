@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: file-service
+
+server:
+  port: 18200
+  tomcat:
+    uri-encoding: utf-8
+    max-swallow-size: 2MB
+
+logging:
+  level:
+    root: info

@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: auth-service
+  cloud:
+    nacos:
+      config:
+        import-check:
+          enabled: false
+      discovery:
+        server-addr: 127.0.0.1:8848
+  profiles:
+    active: dev
+
+logging:
+  level:
+    root: info
