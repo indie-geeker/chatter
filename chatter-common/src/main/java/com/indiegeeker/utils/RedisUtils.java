@@ -45,7 +45,7 @@ public class RedisUtils {
     }
 
     /**
-     * 设置过期时间，单位秒
+     * 设置过期时间，单位
      * @param key
      * @param timeout
      */
@@ -180,5 +180,43 @@ public class RedisUtils {
         });
 
         return result.stream().map(o -> (String)o).collect(Collectors.toList());
+    }
+
+    /**
+     * 累加
+     * 原子性地递增存储在键中的数字值，若键不存在则初始化为0后再递增
+     * @param key
+     */
+    public Long increment(String key){
+        return stringRedisTemplate.opsForValue().increment(key);
+    }
+
+    /**
+     * 累加, 可设置步长
+     * 原子性地递增存储在键中的数字值，若键不存在则初始化为0后再递增
+     * @param key
+     * @param delta
+     */
+    public Long increment(String key,long delta){
+        return stringRedisTemplate.opsForValue().increment(key,delta);
+    }
+
+    /**
+     * 累减
+     * 原子性地递减存储在键中的数字值，若键不存在则初始化为0后再递增
+     * @param key
+     */
+    public Long decrement(String key){
+        return stringRedisTemplate.opsForValue().decrement(key);
+    }
+
+    /**
+     * 累减，可设置步长
+     * 原子性地递减存储在键中的数字值，若键不存在则初始化为0后再递增
+     * @param key
+     * @param delta
+     */
+    public Long decrement(String key,long delta){
+        return stringRedisTemplate.opsForValue().decrement(key,delta);
     }
 }

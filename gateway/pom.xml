@@ -7,7 +7,6 @@
         <groupId>com.indiegeeker</groupId>
         <artifactId>chatter</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../chatter-pojo/pom.xml</relativePath>
     </parent>
 
     <artifactId>gateway</artifactId>
@@ -28,6 +27,16 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
+        </dependency>
+
+        <!--   解决 MacOS M系列芯片 兼容问题
+           Netty 使用本机代码与系统的 DNS 解析器交互，M系列芯片可能会缺少所需的本机库
+           -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-resolver-dns-native-macos</artifactId>
+            <version>4.2.2.Final</version>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
 
