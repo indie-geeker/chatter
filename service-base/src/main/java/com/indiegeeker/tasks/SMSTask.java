@@ -1,4 +1,4 @@
-package com.indiegeeker;
+package com.indiegeeker.tasks;
 
 import com.indiegeeker.utils.SMSUtils;
 import jakarta.annotation.Resource;

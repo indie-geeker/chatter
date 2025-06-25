@@ -1,6 +1,6 @@
 package com.indiegeeker.controller;
 
-import com.indiegeeker.SMSTask;
+import com.indiegeeker.tasks.SMSTask;
 import com.indiegeeker.utils.SMSUtils;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;

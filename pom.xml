@@ -11,11 +11,11 @@
     <modules>
         <module>chatter-common</module>
         <module>chatter-pojo</module>
-        <module>chatter-api</module>
-        <module>auth-service</module>
-        <module>main-service</module>
-        <module>file-service</module>
+        <module>service-auth</module>
+        <module>service-main</module>
+        <module>service-file</module>
         <module>gateway</module>
+        <module>service-base</module>
     </modules>
 
     <properties>

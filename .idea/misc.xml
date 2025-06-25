@@ -10,6 +10,7 @@
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/chatter-api/auth-service/pom.xml" />
+        <option value="$PROJECT_DIR$/chatter-api/pom.xml" />
       </set>
     </option>
   </component>

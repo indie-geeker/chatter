@@ -9,8 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>auth-service</artifactId>
-
+    <artifactId>service-file</artifactId>
 
     <dependencies>
         <dependency>

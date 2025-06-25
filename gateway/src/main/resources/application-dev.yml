@@ -1,4 +1,6 @@
 spring:
+  banner:
+    location: classpath:banner/banner.txt
   data:
     redis:
       host: 127.0.0.1
