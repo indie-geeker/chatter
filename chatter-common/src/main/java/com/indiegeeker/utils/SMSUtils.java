@@ -11,6 +11,7 @@ import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,7 +25,12 @@ public class SMSUtils {
     @Resource
     private TencentCloudProperties tencentCloudProperties;
 
-    public void sendSMS(List<String> phoneList, String content) {
+    public void sendSMS(String phone, String code){
+        ArrayList<String> list = new ArrayList<>();
+        list.add(phone);
+        sendSMS(list, code);
+    }
+    public void sendSMS(List<String> phoneList, String code) {
         try {
             // 实例化一个认证对象，入参需要传入腾讯云账户 SecretId，SecretKey。
             // 为了保护密钥安全，建议将密钥设置在环境变量中或者配置文件中，请参考凭证管理 https://github.com/TencentCloud/tencentcloud-sdk-java?tab=readme-ov-file#%E5%87%AD%E8%AF%81%E7%AE%A1%E7%90%86。
@@ -92,7 +98,7 @@ public class SMSUtils {
             String templateId = tencentCloudProperties.getTemplateId();
             req.setTemplateId(templateId);
             /* 模板参数: 模板参数的个数需要与 TemplateId 对应模板的变量个数保持一致，若无模板参数，则设置为空 */
-            String[] templateParamSet = tencentCloudProperties.getTemplateParamSet();
+            String[] templateParamSet = { code };
             req.setTemplateParamSet(templateParamSet);
             /* 下发手机号码，采用 E.164 标准，+[国家或地区码][手机号]
              * 示例如：+8613711112222， 其中前面有一个+号 ，86为国家码，13711112222为手机号，最多不要超过200个手机号 */

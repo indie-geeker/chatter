@@ -20,5 +20,4 @@ public class TencentCloudProperties {
     private String SdkAppId;
     private String SignName;
     private String TemplateId;
-    private String[] TemplateParamSet;
 }
