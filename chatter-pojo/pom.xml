@@ -10,10 +10,6 @@
     </parent>
 
     <artifactId>chatter-pojo</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>../gateway</module>
-    </modules>
 
     <dependencies>
         <dependency>

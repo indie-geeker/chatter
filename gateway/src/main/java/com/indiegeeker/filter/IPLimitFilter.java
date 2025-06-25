@@ -71,7 +71,7 @@ public class IPLimitFilter extends BaseProperties implements GlobalFilter, Order
         // 根据request获得请求ip
         ServerHttpRequest request = exchange.getRequest();
         String ip = IPUtil.getIP(request);
-        // 正常的ip定义
+        // 正常的ip定义 - 用于计数
         final String ipRedisKey = "gateway-ip:" + ip;
         // 被拦截的黑名单ip，如果在redis中存在，则表示当前ip被限制
         final String ipRedisLimitKey = "gateway-ip:limit:" + ip;
@@ -81,8 +81,8 @@ public class IPLimitFilter extends BaseProperties implements GlobalFilter, Order
             // 终止请求，返回错误
             return renderErrorMsg(exchange, ResponseStatusEnum.BLACK_IP);
         }
-        // 获取 IP 在 redis 中的累加次数
-        Long incrementCount = redis.increment(ipRedisLimitKey,1);
+        // 获取 IP 在 redis 中的累加次数 - 应该对计数键进行递增
+        Long incrementCount = redis.increment(ipRedisKey,1);
         /**
          * 判断如果是第一次进来，也就是从0开始计数，则初期访问就是1，
          * 需要设置间隔的时间，也就是连续请求的次数的间隔时间
@@ -90,6 +90,9 @@ public class IPLimitFilter extends BaseProperties implements GlobalFilter, Order
         if (incrementCount == 1) {
             redis.setExpire(ipRedisKey,timeInterval);
         }
+
+        log.info("IP: {}, 当前计数: {}, 限制次数: {}, 剩余时间: {}", 
+        ip, incrementCount, continueCounts, redis.getExpire(ipRedisKey));
 
         /**
          * 如果还能获得请求的正常次数，说明用户的连续请求落在限定的[timeInterval]之内
@@ -101,6 +104,8 @@ public class IPLimitFilter extends BaseProperties implements GlobalFilter, Order
             // 终止请求，返回错误
             return renderErrorMsg(exchange, ResponseStatusEnum.BLACK_IP);
         }
+
+
 
         return chain.filter(exchange);
     }
