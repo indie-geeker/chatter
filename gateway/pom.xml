@@ -29,6 +29,12 @@
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
 
+        <!-- Bootstrap 支持，spring cloud 2020 之后，bootstrap 取代了 application.yml 配置文件 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+
         <!--   解决 MacOS M系列芯片 兼容问题
            Netty 使用本机代码与系统的 DNS 解析器交互，M系列芯片可能会缺少所需的本机库
            -->

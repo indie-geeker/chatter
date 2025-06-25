@@ -3,23 +3,9 @@ spring:
     name: gateway
   profiles:
     active: dev
-  cloud:
-    gateway:
-      discovery:
-        locator:
-          enabled: true  # 启用服务发现
-    nacos:
-      config:
-        import-check:
-          enabled: false
+
 
 
 logging:
   level:
     root: info
-
-
-blackIp:
-  continueCounts: 3   # ip连续请求的次数
-  timeInterval: 5    # ip判断的时间间隔，单位：秒
-  limitTimes: 20      # 黑名单ip限制的时间，单位：秒

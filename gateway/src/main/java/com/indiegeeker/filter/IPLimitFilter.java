@@ -8,6 +8,7 @@ import com.indiegeeker.utils.IPUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -30,7 +31,7 @@ import java.util.concurrent.TimeUnit;
  **/
 @Component
 @Slf4j
-//@RefreshScope
+@RefreshScope
 public class IPLimitFilter extends BaseProperties implements GlobalFilter, Ordered {
 
     static {
@@ -47,6 +48,8 @@ public class IPLimitFilter extends BaseProperties implements GlobalFilter, Order
      * 等待 n 秒静默后，才能够继续恢复访问
      */
 
+//    @Value默认不支持运行期动态更新，需要结合@RefreshScope注解实现动态刷新，
+//    @NacosConfig默认支持运行期动态更新。。
     @Value("${blackIp.continueCounts}")
     private Integer continueCounts;
 

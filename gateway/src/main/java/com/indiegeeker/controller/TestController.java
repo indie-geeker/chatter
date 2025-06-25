@@ -11,12 +11,17 @@ import org.springframework.web.bind.annotation.RestController;
  * Date: 2025/6/22
  **/
 @RestController
-@RequestMapping("gateway")
+@RequestMapping("/")
 public class TestController extends BaseProperties {
 
     @GetMapping("hello")
     public Object hello(){
         return "hello gateway";
+    }
+
+    @GetMapping("gateway/hello")
+    public Object gatewayHello(){
+        return "hello gateway from gateway path";
     }
 
     @GetMapping("setRedis")
