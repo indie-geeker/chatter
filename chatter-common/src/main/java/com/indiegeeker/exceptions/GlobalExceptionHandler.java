@@ -23,7 +23,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public BaseJSONResult<Void> handleGenericException(Exception ex) {
-        return BaseJSONResult.error(ResponseStatusEnum.FAILED.code, "系统内部错误");
+        return BaseJSONResult.error(ResponseStatusEnum.SYSTEM_ERROR);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

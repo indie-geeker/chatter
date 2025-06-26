@@ -21,6 +21,8 @@ public class BaseProperties {
     public static final Integer PAGE_START = 1;
     public static final Integer PAGE_SIZE = 10;
 
+    public static final String MOBILE_SMSCODE = "mobile:smscode";
+
 
     /**
      * 适用于page-helper

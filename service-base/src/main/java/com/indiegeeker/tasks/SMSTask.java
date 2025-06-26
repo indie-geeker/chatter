@@ -18,7 +18,7 @@ public class SMSTask {
     SMSUtils smsUtils;
 
     @Async
-    public void sendSMS(String phone, String message) {
-        smsUtils.sendSMS(phone, message);
+    public void sendSMS(String mobile, String message) {
+        smsUtils.sendSMS(mobile, message);
     }
 }

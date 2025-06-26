@@ -9,3 +9,4 @@ spring:
 logging:
   level:
     root: info
+    org.springframework.data.redis: info  # Redis 相关日志

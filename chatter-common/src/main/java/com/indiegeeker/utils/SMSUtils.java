@@ -25,12 +25,12 @@ public class SMSUtils {
     @Resource
     private TencentCloudProperties tencentCloudProperties;
 
-    public void sendSMS(String phone, String code){
+    public void sendSMS(String mobile, String code){
         ArrayList<String> list = new ArrayList<>();
-        list.add(phone);
+        list.add(mobile);
         sendSMS(list, code);
     }
-    public void sendSMS(List<String> phoneList, String code) {
+    public void sendSMS(List<String> mobileList, String code) {
         try {
             // 实例化一个认证对象，入参需要传入腾讯云账户 SecretId，SecretKey。
             // 为了保护密钥安全，建议将密钥设置在环境变量中或者配置文件中，请参考凭证管理 https://github.com/TencentCloud/tencentcloud-sdk-java?tab=readme-ov-file#%E5%87%AD%E8%AF%81%E7%AE%A1%E7%90%86。
@@ -102,9 +102,9 @@ public class SMSUtils {
             req.setTemplateParamSet(templateParamSet);
             /* 下发手机号码，采用 E.164 标准，+[国家或地区码][手机号]
              * 示例如：+8613711112222， 其中前面有一个+号 ，86为国家码，13711112222为手机号，最多不要超过200个手机号 */
-            String[] phoneNumberSet = new String[phoneList.size()];
-            for(int i = 0; i < phoneList.size(); i++){
-                String phone = phoneList.get(i);
+            String[] phoneNumberSet = new String[mobileList.size()];
+            for(int i = 0; i < mobileList.size(); i++){
+                String phone = mobileList.get(i);
                 if(phone.startsWith("+86")){
                     phoneNumberSet[i] = phone;
                 }else{

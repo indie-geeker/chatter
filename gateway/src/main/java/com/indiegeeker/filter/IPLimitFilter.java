@@ -1,6 +1,8 @@
 package com.indiegeeker.filter;
 
-import com.google.gson.Gson;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.indiegeeker.base.BaseJSONResult;
 import com.indiegeeker.base.BaseProperties;
 import com.indiegeeker.enums.ResponseStatusEnum;
@@ -14,6 +16,7 @@ import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
@@ -41,6 +44,11 @@ public class IPLimitFilter extends BaseProperties implements GlobalFilter, Order
     public IPLimitFilter() {
         System.out.println("IPLimitFilter 实例已创建");
     }
+    
+    // 创建一个静态的ObjectMapper实例，配置好Java时间模块
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper()
+            .registerModule(new JavaTimeModule());
+    
     /**
      * 需求：
      * 判断某个请求的ip在 x 秒内的请求次数是否超过 y 次
@@ -103,7 +111,7 @@ public class IPLimitFilter extends BaseProperties implements GlobalFilter, Order
          */
         if (incrementCount > continueCounts) {
             // 限制ip访问的时间[limitTimes]
-            redis.setWithExpire(ipRedisLimitKey,ipRedisLimitKey,limitTimes, TimeUnit.SECONDS);
+            redis.set(ipRedisLimitKey,ipRedisLimitKey,limitTimes, TimeUnit.SECONDS);
             // 终止请求，返回错误
             return renderErrorMsg(exchange, ResponseStatusEnum.BLACK_IP);
         }
@@ -131,10 +139,20 @@ public class IPLimitFilter extends BaseProperties implements GlobalFilter, Order
         response.setStatusCode(HttpStatus.INTERNAL_SERVER_ERROR);
         // 4. 构建jsonResult
         BaseJSONResult<Object> jsonResult = BaseJSONResult.error(statusEnum);
-        // 5. 转换json并且像response中写入数据
-        String json = new Gson().toJson(jsonResult);
-        DataBuffer dataBuffer = response.bufferFactory().wrap(json.getBytes(StandardCharsets.UTF_8));
-        return response.writeWith(Mono.just(dataBuffer));
+        
+        try {
+            // 使用配置好的ObjectMapper进行序列化
+            String json = OBJECT_MAPPER.writeValueAsString(jsonResult);
+            DataBuffer dataBuffer = response.bufferFactory().wrap(json.getBytes(StandardCharsets.UTF_8));
+            return response.writeWith(Mono.just(dataBuffer));
+        } catch (JsonProcessingException e) {
+            log.error("JSON序列化失败: {}", e.getMessage(), e);
+            // 如果序列化失败，返回简单的错误信息
+            String errorJson = "{\"code\": 500, \"msg\": \"系统错误\", \"timestamp\": \"" + 
+                              java.time.LocalDateTime.now() + "\"}";
+            DataBuffer dataBuffer = response.bufferFactory().wrap(errorJson.getBytes(StandardCharsets.UTF_8));
+            return response.writeWith(Mono.just(dataBuffer));
+        }
     }
 
     // 过滤器的顺序，数字越小则优先级越高

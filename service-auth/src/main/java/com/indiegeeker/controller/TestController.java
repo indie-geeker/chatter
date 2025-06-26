@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Date: 2025/6/22
  **/
 @RestController
-@RequestMapping("auth")
+@RequestMapping("authTest")
 public class TestController {
 
     @Resource

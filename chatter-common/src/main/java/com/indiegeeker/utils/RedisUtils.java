@@ -89,7 +89,7 @@ public class RedisUtils {
      * @param value
      */
     public void setExpireBySecond(String key, String value, long timeout){
-        setWithExpire(key,value,timeout,TimeUnit.SECONDS);
+        set(key,value,timeout,TimeUnit.SECONDS);
     }
 
     /**
@@ -98,7 +98,7 @@ public class RedisUtils {
      * @param value
      */
     public void setExpireByMinutes(String key, String value, long timeout){
-        setWithExpire(key,value,timeout,TimeUnit.MINUTES);
+        set(key,value,timeout,TimeUnit.MINUTES);
     }
 
     /**
@@ -107,7 +107,7 @@ public class RedisUtils {
      * @param value
      */
     public void setExpireByHours(String key, String value, long timeout){
-        setWithExpire(key,value,timeout,TimeUnit.HOURS);
+        set(key,value,timeout,TimeUnit.HOURS);
     }
 
     /**
@@ -116,7 +116,7 @@ public class RedisUtils {
      * @param value
      */
     public void setExpireByDays(String key, String value, long timeout){
-        setWithExpire(key,value,timeout,TimeUnit.DAYS);
+        set(key,value,timeout,TimeUnit.DAYS);
     }
 
     /**
@@ -125,7 +125,7 @@ public class RedisUtils {
      * @param value
      * @param timeout
      */
-    public void setWithExpire(String key, String value, long timeout, TimeUnit timeUnit){
+    public void set(String key, String value, long timeout, TimeUnit timeUnit){
         stringRedisTemplate.opsForValue().set(key,value,timeout,timeUnit);
     }
 
