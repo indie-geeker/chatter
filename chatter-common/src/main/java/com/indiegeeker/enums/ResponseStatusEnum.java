@@ -34,6 +34,10 @@ public enum ResponseStatusEnum {
     BUSINESS_RULE_VIOLATION(5400, "业务规则校验失败"),
     DUPLICATE_OPERATION(5401, "重复操作"),
 
+    // 545x - 短信相关错误
+    SMS_NEED_WAIT_ERROR(5450, "短信发送过于频繁，请稍后重试"),
+    SMS_CODE_EXPIRED(5451, "验证码已过期"),
+    SMS_CODE_ERROR(5452, "验证码错误"),
 
     // 550x - 资源错误
     RESOURCE_NOT_FOUND(5500, "资源不存在"),

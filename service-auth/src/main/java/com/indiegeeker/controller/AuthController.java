@@ -35,17 +35,28 @@ public class AuthController extends BaseProperties {
         if (mobile == null || mobile.isEmpty()) {
             return BaseJSONResult.error(ResponseStatusEnum.PARAM_MISSING);
         }
+        
         // 获得用户的手机号/ip
         String requestIp = IPUtil.getRequestIp(request);
+        
         // 限制该用户的手机号/ip在60秒内只能获得一次验证码
-        redis.setIfAbsent(MOBILE_SMSCODE + ":" + requestIp, mobile,60, TimeUnit.SECONDS);
+        String limitKey = MOBILE_SMSCODE + ":" + requestIp;
+        Boolean setResult = redis.setIfAbsent(limitKey, mobile, 60, TimeUnit.SECONDS);
+        
+        // 如果setResult为false，说明60秒内已经请求过验证码
+        if (setResult == null || !setResult) {
+            log.warn("IP: {} 在60秒内重复请求短信验证码，手机号: {}", requestIp, mobile);
+            return BaseJSONResult.error(ResponseStatusEnum.SMS_NEED_WAIT_ERROR);
+        }
+        
+        log.info("IP: {} 首次请求短信验证码，手机号: {}", requestIp, mobile);
 
         // 生成6位验证码
-        String smsCode = String.valueOf((int) (Math.random() * 9 + 1));
+        String smsCode = String.valueOf((int) (Math.random() * 900000) + 100000);
 //        smsTask.sendSMS(mobile, smsCode);
 
         // 把验证码存入到redis中，用于后续的注册/登录的校验
-        redis.set(MOBILE_SMSCODE + ":" + mobile, smsCode,5,TimeUnit.MINUTES);
+        redis.set(MOBILE_SMSCODE + ":" + mobile, smsCode, 5, TimeUnit.MINUTES);
         return BaseJSONResult.ok();
     }
 }

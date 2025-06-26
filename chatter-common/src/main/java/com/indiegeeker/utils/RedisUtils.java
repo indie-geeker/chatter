@@ -133,13 +133,22 @@ public class RedisUtils {
      * 如果key不存在，则设置，如果存在，则不操作
      * @param key
      * @param value
+     * @return true表示设置成功，false表示key已存在未设置
      */
-    public void setIfAbsent(String key, String value){
-        stringRedisTemplate.opsForValue().setIfAbsent(key,value);
+    public Boolean setIfAbsent(String key, String value){
+        return stringRedisTemplate.opsForValue().setIfAbsent(key,value);
     }
 
-    public void setIfAbsent(String key, String value, long timeout, TimeUnit timeUnit){
-        stringRedisTemplate.opsForValue().setIfAbsent(key,value,timeout,timeUnit);
+    /**
+     * 如果key不存在，则设置，如果存在，则不操作
+     * @param key
+     * @param value
+     * @param timeout
+     * @param timeUnit
+     * @return true表示设置成功，false表示key已存在未设置
+     */
+    public Boolean setIfAbsent(String key, String value, long timeout, TimeUnit timeUnit){
+        return stringRedisTemplate.opsForValue().setIfAbsent(key,value,timeout,timeUnit);
     }
 
     /**
