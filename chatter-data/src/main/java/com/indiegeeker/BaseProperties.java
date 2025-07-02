@@ -1,4 +1,4 @@
-package com.indiegeeker.base;
+package com.indiegeeker;
 
 import com.indiegeeker.utils.RedisUtils;
 import jakarta.annotation.Resource;

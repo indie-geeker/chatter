@@ -1,4 +1,4 @@
-package com.indiegeeker.utils;
+package com.indiegeeker;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

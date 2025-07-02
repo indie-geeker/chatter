@@ -3,10 +3,10 @@ package com.indiegeeker.filter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.indiegeeker.BaseProperties;
 import com.indiegeeker.base.BaseJSONResult;
-import com.indiegeeker.base.BaseProperties;
 import com.indiegeeker.enums.ResponseStatusEnum;
-import com.indiegeeker.utils.IPUtil;
+import com.indiegeeker.utils.GateWayIPUtils;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -16,7 +16,6 @@ import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
@@ -81,7 +80,7 @@ public class IPLimitFilter extends BaseProperties implements GlobalFilter, Order
     private Mono<Void> doFiltration(ServerWebExchange exchange, GatewayFilterChain chain) {
         // 根据request获得请求ip
         ServerHttpRequest request = exchange.getRequest();
-        String ip = IPUtil.getIP(request);
+        String ip = GateWayIPUtils.getIP(request);
         // 正常的ip定义 - 用于计数
         final String ipRedisKey = "gateway-ip:" + ip;
         // 被拦截的黑名单ip，如果在redis中存在，则表示当前ip被限制

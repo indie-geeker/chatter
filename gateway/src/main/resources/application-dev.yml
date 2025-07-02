@@ -7,6 +7,8 @@ spring:
       port: 6379
       database: 0
       password: root
+  application:
+    name: gateway
 
   cloud:
     nacos:
@@ -50,3 +52,26 @@ blackIp:
   continueCounts: 3   # ip连续请求的次数
   timeInterval: 5    # ip判断的时间间隔，单位：秒
   limitTimes: 20      # 黑名单ip限制的时间，单位：秒
+
+# 安全配置 - 排除路径管理
+security:
+  exclude:
+    # 可在配置文件中动态添加排除路径
+    paths:
+      # 开发环境特殊排除路径
+      - "/dev/**"
+      - "/debug/**"
+      # 临时开放的接口（可随时调整）
+      - "/temp/**"
+      # 第三方回调接口
+      - "/callback/**"
+      - "/webhook/**"
+      # 特定业务的公开接口
+      - "/public/**"
+      - "/open/**"
+
+logging:
+  level:
+    root: info
+    org.springframework.data.redis: info  # Redis 相关日志
+    com.indiegeeker.filter.SecurityFilter: debug  # 安全过滤器日志

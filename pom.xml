@@ -9,13 +9,16 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>chatter-common</module>
+        <module>chatter-core</module>
         <module>chatter-pojo</module>
         <module>service-auth</module>
         <module>service-main</module>
         <module>service-file</module>
         <module>gateway</module>
         <module>service-base</module>
+        <module>chatter-security</module>
+        <module>chatter-web</module>
+        <module>chatter-data</module>
     </modules>
 
     <properties>
@@ -109,6 +112,13 @@
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+
+            <!-- Java时间API支持 -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.datatype</groupId>
+                <artifactId>jackson-datatype-jsr310</artifactId>
                 <version>${jackson.version}</version>
             </dependency>
 

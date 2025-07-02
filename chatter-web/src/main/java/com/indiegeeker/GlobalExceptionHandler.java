@@ -1,7 +1,8 @@
-package com.indiegeeker.exceptions;
+package com.indiegeeker;
 
 import com.indiegeeker.base.BaseJSONResult;
 import com.indiegeeker.enums.ResponseStatusEnum;
+import com.indiegeeker.exceptions.BaseException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
