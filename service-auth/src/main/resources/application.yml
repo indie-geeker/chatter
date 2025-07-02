@@ -11,6 +11,42 @@ spring:
   profiles:
     active: dev
 
+# Knife4j 配置
+knife4j:
+  enable: true
+  setting:
+    # 语言设置：中文
+    language: zh_cn
+    # 开启增强功能
+    enable-version: true
+    enable-swagger-models: true
+    swagger-model-name: "数据模型"
+    enable-document-manage: true
+    enable-host: false
+    enable-host-text: ""
+    enable-request-cache: true
+    enable-filter-multipart-api-method-type: POST
+    enable-filter-multipart-apis: false
+    enable-after-script: true
+    enable-response-code: true
+    enable-dynamic-parameter: false
+    enable-debug: true
+    enable-footer: false
+    enable-footer-custom: false
+
+# SpringDoc 配置
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+  group-configs:
+    - group: 'default'
+      paths-to-match: '/**'
+      packages-to-scan: com.indiegeeker
+
 logging:
   level:
     root: info
