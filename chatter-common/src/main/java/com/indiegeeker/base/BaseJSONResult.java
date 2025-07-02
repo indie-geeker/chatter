@@ -1,8 +1,10 @@
 package com.indiegeeker.base;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.indiegeeker.enums.ResponseStatusEnum;
 import com.indiegeeker.exceptions.BaseException;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,13 +22,17 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@Schema(description = "统一API响应结果")
 public class BaseJSONResult<T> implements Serializable {
     
     @Serial
     private static final long serialVersionUID = 1L;
-    
+
+    @Schema(description = "响应状态码", example = "200", required = true)
     private Integer code;
+    @Schema(description = "响应消息", example = "操作成功", required = true)
     private String msg;
+    @Schema(description = "响应数据")
     private T data;
     private LocalDateTime timestamp;
     
@@ -95,6 +101,7 @@ public class BaseJSONResult<T> implements Serializable {
     }
     
     // 判断是否成功
+    @JsonIgnore
     public boolean isSuccess() {
         return ResponseStatusEnum.SUCCESS.getCode().equals(this.code);
     }

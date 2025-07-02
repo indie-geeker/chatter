@@ -41,9 +41,9 @@ public class AuthController extends BaseProperties {
             description = "根据手机号发送6位数字验证码，60秒内只能发送一次，验证码5分钟内有效"
     )
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "发送成功"),
-            @ApiResponse(responseCode = "500", description = "参数缺失"),
-            @ApiResponse(responseCode = "1002", description = "60秒内不能重复发送")
+            @ApiResponse(responseCode = "200", description = "操作成功"),
+            @ApiResponse(responseCode = "500", description = "操作失败"),
+
     })
     @GetMapping("getSMSCode")
     public BaseJSONResult<String> getSMSCode(
