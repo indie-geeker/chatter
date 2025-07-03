@@ -13,10 +13,35 @@
 
 
     <dependencies>
+        <!--  微服务基础设施      -->
         <dependency>
             <groupId>com.indiegeeker</groupId>
-            <artifactId>service-base</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <artifactId>chatter-cloud</artifactId>
+        </dependency>
+        <!--  实体定义      -->
+        <dependency>
+            <groupId>com.indiegeeker</groupId>
+            <artifactId>chatter-pojo</artifactId>
+        </dependency>
+        <!--  数据访问      -->
+        <dependency>
+            <groupId>com.indiegeeker</groupId>
+            <artifactId>chatter-data</artifactId>
+        </dependency>
+        <!--  web 基础实施      -->
+        <dependency>
+            <groupId>com.indiegeeker</groupId>
+            <artifactId>chatter-web</artifactId>
+        </dependency>
+        <!--  用户上下文管理      -->
+        <dependency>
+            <groupId>com.indiegeeker</groupId>
+            <artifactId>chatter-context</artifactId>
+        </dependency>
+        <!--  文档组件      -->
+        <dependency>
+            <groupId>com.indiegeeker</groupId>
+            <artifactId>chatter-doc</artifactId>
         </dependency>
     </dependencies>
 </project>

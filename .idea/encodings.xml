@@ -5,9 +5,12 @@
     <file url="file://$PROJECT_DIR$/chatter-api/auth-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/chatter-api/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/chatter-api/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/chatter-cloud/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/chatter-context/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/chatter-core/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/chatter-core/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/chatter-data/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/chatter-doc/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/chatter-pojo/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/chatter-pojo/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/chatter-security/src/main/java" charset="UTF-8" />
@@ -21,6 +24,7 @@
     <file url="file://$PROJECT_DIR$/service-file/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service-main/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service-main/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-sms/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>

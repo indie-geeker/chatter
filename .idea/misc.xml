@@ -12,6 +12,8 @@
         <option value="$PROJECT_DIR$/chatter-api/auth-service/pom.xml" />
         <option value="$PROJECT_DIR$/chatter-api/pom.xml" />
         <option value="$PROJECT_DIR$/mybatis-plus-generator/pom.xml" />
+        <option value="$PROJECT_DIR$/service-base/pom.xml" />
+        <option value="$PROJECT_DIR$/service-main/pom.xml" />
       </set>
     </option>
   </component>

@@ -11,6 +11,28 @@ spring:
   profiles:
     active: dev
 
+# Chatter 文档配置
+chatter:
+  doc:
+    enabled: true
+    title: "认证服务 API 文档"
+    version: "1.0.0"
+    description: "Chatter 认证服务接口文档，提供用户注册、登录、权限管理等功能"
+    contact:
+      name: "IndieGeeker"
+      email: "contact@indiegeeker.com"
+      url: "https://indiegeeker.com"
+    license:
+      name: "Apache 2.0"
+      url: "https://www.apache.org/licenses/LICENSE-2.0"
+    server:
+      url: "http://localhost:8080"
+      description: "认证服务本地开发环境"
+    group:
+      name: "auth"
+      base-package: "com.indiegeeker.controller"
+      description: "认证服务接口"
+
 # Knife4j 配置
 knife4j:
   enable: true
@@ -42,10 +64,6 @@ springdoc:
   swagger-ui:
     path: /swagger-ui.html
     enabled: true
-  group-configs:
-    - group: 'default'
-      paths-to-match: '/**'
-      packages-to-scan: com.indiegeeker
 
 logging:
   level:

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.indiegeeker</groupId>
+        <artifactId>chatter</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>service-sms</artifactId>
+
+
+    <dependencies>
+        <!--  微服务基础设施      -->
+        <dependency>
+            <groupId>com.indiegeeker</groupId>
+            <artifactId>chatter-cloud</artifactId>
+        </dependency>
+        <!--  实体定义      -->
+        <dependency>
+            <groupId>com.indiegeeker</groupId>
+            <artifactId>chatter-pojo</artifactId>
+        </dependency>
+        <!--  数据访问      -->
+        <dependency>
+            <groupId>com.indiegeeker</groupId>
+            <artifactId>chatter-data</artifactId>
+        </dependency>
+        <!--  web 基础实施      -->
+        <dependency>
+            <groupId>com.indiegeeker</groupId>
+            <artifactId>chatter-web</artifactId>
+        </dependency>
+
+        <!-- 腾讯云短信SDK -->
+        <dependency>
+            <groupId>com.tencentcloudapi</groupId>
+            <artifactId>tencentcloud-sdk-java-sms</artifactId>
+        </dependency>
+    </dependencies>
+</project>

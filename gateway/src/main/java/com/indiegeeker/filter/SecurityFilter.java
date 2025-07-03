@@ -1,7 +1,7 @@
 package com.indiegeeker.filter;
 
 import com.indiegeeker.config.SecurityExcludeConfig;
-import com.indiegeeker.context.UserContext;
+import com.indiegeeker.context.domain.UserContext;
 import com.indiegeeker.utils.JWTUtils;
 import com.indiegeeker.utils.PathMatcherUtils;
 import lombok.RequiredArgsConstructor;

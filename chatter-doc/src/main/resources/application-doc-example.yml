@@ -1,0 +1,60 @@
+# Chatter 文档配置示例
+# 将此配置添加到你的 application.yml 或 application.properties 文件中
+
+chatter:
+  doc:
+    # 是否启用文档（默认：true）
+    enabled: true
+    
+    # 文档基本信息
+    title: "Chatter API 文档"
+    version: "1.0.0"
+    description: "Chatter 项目 API 接口文档，提供完整的接口说明和调试功能"
+    terms-of-service-url: "https://indiegeeker.com/terms"
+    
+    # 联系人信息
+    contact:
+      name: "IndieGeeker"
+      email: "contact@indiegeeker.com"
+      url: "https://indiegeeker.com"
+    
+    # 许可证信息
+    license:
+      name: "Apache 2.0"
+      url: "https://www.apache.org/licenses/LICENSE-2.0"
+    
+    # 服务器信息
+    server:
+      url: "http://localhost:8080"
+      description: "本地开发环境"
+    
+    # 分组配置
+    group:
+      name: "default"
+      base-package: "com.indiegeeker"
+      description: "默认分组"
+
+# Knife4j 增强配置
+knife4j:
+  enable: true
+  setting:
+    language: zh_cn
+    swagger-model-name: "实体类列表"
+    enable-version: true
+    enable-reload-cache-parameter: true
+    enable-after-script: true
+    enable-filter-multipart-api-method-type: POST
+    enable-filter-multipart-apis: false
+    enable-request-cache: true
+    enable-host: false
+    enable-host-text: "127.0.0.1:8080"
+    enable-home-custom: true
+    home-custom-location: "classpath:markdown/home.md"
+    enable-search: true
+    enable-footer: false
+    enable-footer-custom: true
+    footer-custom-content: "Copyright © 2024 IndieGeeker"
+    enable-dynamic-parameter: true
+    enable-debug: true
+    enable-open-api: false
+    enable-group: true 

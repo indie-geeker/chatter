@@ -1,0 +1,29 @@
+# Chatter Context 测试配置
+# 用于验证用户上下文模块是否正常工作
+
+chatter:
+  context:
+    web:
+      enabled: true  # 启用Web功能
+      exclude-path-patterns:  # 排除路径
+        - "/error/**"
+        - "/actuator/**" 
+        - "/health/**"
+        - "/swagger-ui/**"
+        - "/v3/api-docs/**"
+        - "/doc.html"
+        - "/test/**"  # 测试路径
+    parser:
+      user-info-header: "X-User-Info"  # 用户信息header名称
+      debug: true  # 启用调试模式
+
+# Spring Boot 基础配置
+spring:
+  application:
+    name: chatter-context-test
+  
+# 日志配置
+logging:
+  level:
+    com.indiegeeker.context: DEBUG  # 开启Context模块调试日志
+    org.springframework.web: INFO 

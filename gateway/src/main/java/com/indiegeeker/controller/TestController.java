@@ -1,7 +1,8 @@
 package com.indiegeeker.controller;
 
 
-import com.indiegeeker.BaseProperties;
+import com.indiegeeker.utils.RedisUtils;
+import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
  **/
 @RestController
 @RequestMapping("/")
-public class TestController extends BaseProperties {
+public class TestController {
+    @Resource
+    RedisUtils redisUtils;
 
     @GetMapping("hello")
     public Object hello(){
@@ -28,11 +31,11 @@ public class TestController extends BaseProperties {
 
     @GetMapping("setRedis")
     public void setRedis(@RequestParam String key, @RequestParam String value){
-        redis.set(key,value);
+        redisUtils.set(key,value);
     }
 
     @GetMapping("getRedis")
     public String getRedis(@RequestParam String key){
-        return redis.get(key);
+        return redisUtils.get(key);
     }
 }

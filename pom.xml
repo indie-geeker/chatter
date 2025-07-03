@@ -12,19 +12,22 @@
         <module>chatter-core</module>
         <module>chatter-pojo</module>
         <module>service-auth</module>
-        <module>service-main</module>
         <module>service-file</module>
         <module>gateway</module>
-        <module>service-base</module>
         <module>chatter-security</module>
         <module>chatter-web</module>
         <module>chatter-data</module>
+        <module>service-sms</module>
+        <module>chatter-cloud</module>
+        <module>chatter-context</module>
+        <module>chatter-doc</module>
     </modules>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.version>1.0-SNAPSHOT</project.version>
 
         <jackson.version>2.19.0</jackson.version>
     </properties>
@@ -133,6 +136,85 @@
                 <artifactId>core</artifactId>
                 <version>3.5.3</version>
             </dependency>
+
+            <!-- 腾讯云短信SDK -->
+            <dependency>
+                <groupId>com.tencentcloudapi</groupId>
+                <artifactId>tencentcloud-sdk-java-sms</artifactId>
+                <version>3.1.1281</version>
+            </dependency>
+
+
+            <!--    统一管理子模块版本        -->
+            <!--    基础设施层        -->
+            <!--    基础工具        -->
+            <dependency>
+                <groupId>com.indiegeeker</groupId>
+                <artifactId>chatter-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!--    微服务基础设施        -->
+            <dependency>
+                <groupId>com.indiegeeker</groupId>
+                <artifactId>chatter-cloud</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!--    领域层        -->
+            <!--    实体定义        -->
+            <dependency>
+                <groupId>com.indiegeeker</groupId>
+                <artifactId>chatter-pojo</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!--    安全组件        -->
+            <dependency>
+                <groupId>com.indiegeeker</groupId>
+                <artifactId>chatter-security</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!--    基础服务层        -->
+            <!--    数据访问        -->
+            <dependency>
+                <groupId>com.indiegeeker</groupId>
+                <artifactId>chatter-data</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.indiegeeker</groupId>
+                <artifactId>chatter-web</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!--    用户上下文，归属于应用层，按功能单元划分，横切关注点，保持功能内聚        -->
+            <dependency>
+                <groupId>com.indiegeeker</groupId>
+                <artifactId>chatter-context</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!--    文档组件        -->
+            <dependency>
+                <groupId>com.indiegeeker</groupId>
+                <artifactId>chatter-doc</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!--    业务服务层        -->
+            <dependency>
+                <groupId>com.indiegeeker</groupId>
+                <artifactId>service-auth</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+
+            <!--    网关层        -->
+            <dependency>
+                <groupId>com.indiegeeker</groupId>
+                <artifactId>gateway</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+
         </dependencies>
     </dependencyManagement>
 </project>
