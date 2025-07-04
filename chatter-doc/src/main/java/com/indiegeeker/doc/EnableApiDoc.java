@@ -13,7 +13,7 @@ import java.lang.annotation.*;
  * 使用示例：
  * <pre>
  * &#64;SpringBootApplication
- * &#64;EnableChatterDoc
+ * &#64;EnableApiDoc
  * public class Application {
  *     public static void main(String[] args) {
  *         SpringApplication.run(Application.class, args);
@@ -27,5 +27,5 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Import(DocAutoConfiguration.class)
-public @interface EnableChatterDoc {
+public @interface EnableApiDoc {
 } 

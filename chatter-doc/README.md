@@ -27,11 +27,11 @@ Chatter Doc 模块是一个集中管理 Knife4j（OpenAPI/Swagger）文档的组
 
 #### 方式一：使用注解（推荐）
 
-在 Spring Boot 主启动类上添加 `@EnableChatterDoc` 注解：
+在 Spring Boot 主启动类上添加 `@EnableApiDoc` 注解：
 
 ```java
 @SpringBootApplication
-@EnableChatterDoc
+@EnableApiDoc
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
