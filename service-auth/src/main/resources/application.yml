@@ -30,7 +30,7 @@ chatter:
       description: "认证服务本地开发环境"
     group:
       name: "auth"
-      base-package: "com.indiegeeker.controller"
+      base-package: "com.indiegeeker.auth.controller"
       description: "认证服务接口"
 
 # Knife4j 配置

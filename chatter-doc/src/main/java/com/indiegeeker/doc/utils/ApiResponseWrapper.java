@@ -1,6 +1,6 @@
 package com.indiegeeker.doc.utils;
 
-import com.indiegeeker.base.BaseJSONResult;
+import com.indiegeeker.core.base.BaseJSONResult;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
