@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.indiegeeker</groupId>
         <artifactId>chatter</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>chatter-context</artifactId>

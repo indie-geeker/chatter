@@ -6,7 +6,7 @@
 
     <groupId>com.indiegeeker</groupId>
     <artifactId>chatter</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>${revision}</version>
     <packaging>pom</packaging>
     <modules>
         <module>chatter-core</module>
@@ -27,7 +27,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.version>1.0-SNAPSHOT</project.version>
+        <revision>1.0.0</revision>
 
         <jackson.version>2.19.0</jackson.version>
     </properties>
@@ -151,13 +151,13 @@
             <dependency>
                 <groupId>com.indiegeeker</groupId>
                 <artifactId>chatter-core</artifactId>
-                <version>${project.version}</version>
+                <version>${revision}</version>
             </dependency>
             <!--    微服务基础设施        -->
             <dependency>
                 <groupId>com.indiegeeker</groupId>
                 <artifactId>chatter-cloud</artifactId>
-                <version>${project.version}</version>
+                <version>${revision}</version>
             </dependency>
 
             <!--    领域层        -->
@@ -165,13 +165,13 @@
             <dependency>
                 <groupId>com.indiegeeker</groupId>
                 <artifactId>chatter-pojo</artifactId>
-                <version>${project.version}</version>
+                <version>${revision}</version>
             </dependency>
             <!--    安全组件        -->
             <dependency>
                 <groupId>com.indiegeeker</groupId>
                 <artifactId>chatter-security</artifactId>
-                <version>${project.version}</version>
+                <version>${revision}</version>
             </dependency>
 
             <!--    基础服务层        -->
@@ -179,31 +179,31 @@
             <dependency>
                 <groupId>com.indiegeeker</groupId>
                 <artifactId>chatter-data</artifactId>
-                <version>${project.version}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.indiegeeker</groupId>
                 <artifactId>chatter-web</artifactId>
-                <version>${project.version}</version>
+                <version>${revision}</version>
             </dependency>
             <!--    用户上下文，归属于应用层，按功能单元划分，横切关注点，保持功能内聚        -->
             <dependency>
                 <groupId>com.indiegeeker</groupId>
                 <artifactId>chatter-context</artifactId>
-                <version>${project.version}</version>
+                <version>${revision}</version>
             </dependency>
             <!--    文档组件        -->
             <dependency>
                 <groupId>com.indiegeeker</groupId>
                 <artifactId>chatter-doc</artifactId>
-                <version>${project.version}</version>
+                <version>${revision}</version>
             </dependency>
 
             <!--    业务服务层        -->
             <dependency>
                 <groupId>com.indiegeeker</groupId>
                 <artifactId>service-auth</artifactId>
-                <version>${project.version}</version>
+                <version>${revision}</version>
             </dependency>
 
 
@@ -211,10 +211,69 @@
             <dependency>
                 <groupId>com.indiegeeker</groupId>
                 <artifactId>gateway</artifactId>
-                <version>${project.version}</version>
+                <version>${revision}</version>
             </dependency>
-
 
         </dependencies>
     </dependencyManagement>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <version>1.5.0</version>
+                <!-- 是否继承父模块 -->
+                <inherited>true</inherited>
+                <executions>
+                    <!-- 开发阶段：CI友好模式 -->
+                    <execution>
+                        <id>flatten-dev</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                        <configuration>
+                            <updatePomFile>true</updatePomFile>
+                            <!-- 扁平化模式 ： 只保留CI友好的依赖 -->
+                            <flattenMode>resolveCiFriendliesOnly</flattenMode>
+                            <pomElements>
+                                <parent>expand</parent>
+                                <distributionManagement>remove</distributionManagement>
+                                <repositories>remove</repositories>
+                            </pomElements>
+                        </configuration>
+                    </execution>
+
+                    <!-- 发布阶段：OSS模式 适合发布到Maven中央仓库 -->
+                    <execution>
+                        <id>flatten-release</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                        <configuration>
+                            <updatePomFile>true</updatePomFile>
+                            <flattenMode>oss</flattenMode>
+                            <pomElements>
+                                <parent>expand</parent>
+                                <dependencyManagement>expand</dependencyManagement>
+                                <properties>expand</properties>
+                            </pomElements>
+                        </configuration>
+                    </execution>
+
+                    <!-- 清理阶段 -->
+                    <execution>
+                        <id>flatten.clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
